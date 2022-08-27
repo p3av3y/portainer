@@ -1,4 +1,5 @@
-version: '2'
+version: '3.2'
+
 services:
   # This container depends on the config written by the configure container above, so it
   # sleeps for a second on startup to allow the configure container to run first.
