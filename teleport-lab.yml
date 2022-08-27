@@ -18,10 +18,6 @@ services:
       - config:/etc/teleport
       - data:/var/lib/teleport
       - certs:/mnt/shared/certs
-    networks:
-      teleport:
-        aliases:
-          - proxy.luna.teleport
 
   # The bootstrap container generates certificates and then immediately exits.
   bootstrap:
@@ -34,8 +30,6 @@ services:
       - data:/var/lib/teleport
       - certs:/mnt/shared/certs
     depends_on:
-      - teleport
-    networks:
       - teleport
 
   #
@@ -51,10 +45,6 @@ services:
       - certs:/mnt/shared/certs
     depends_on:
       - bootstrap
-    networks:
-      teleport:
-        aliases:
-          - mars.openssh.teleport
 
   #
   # term is a container with a terminal to try things out
@@ -69,12 +59,8 @@ services:
       - certs:/mnt/shared/certs
     depends_on:
       - bootstrap
-    networks:
-      - teleport
 
 volumes:
   certs:
   data:
   config:
-
-networks:
